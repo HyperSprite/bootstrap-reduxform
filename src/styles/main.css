@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,500');
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
+@import url('./bootstrap-colors.css');
+
+/* Colors
+b1 - #4183d7 Royal Blue
+b2 - #c6d9f3
+b3 - #2e5c98
+b4 - #13254B Dark Royal
+o1 - #F9B29D Light Crusta
+o2 - #F2784B Crusta
+g1 - #6C7A89 Lynch
+g2 - #ccc
+w1 - #fefefe
+*/
+
+/*Forms*/
+.inline-this {
+  display: inline;
+  padding-top: 0.1em;
+  line-height: 3em;
+}
+
+.inline-next > div > label {
+  display: inline;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+  margin-bottom: 0.3em;
+  padding-top: 0.1em;
+  line-height: 3em;
+}
+
+.inline-next > div > div {
+  display: inline;
+}
+
+.inline-next > div > div > input {
+  font-size: 1.4em;
+}
+
+.inline-next, .form-input-label > label {
+  font-size: 1.6em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select.form-control {
+  height: 1.4em;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select.form-control:focus {
+     -webkit-box-shadow: 0 2px 1px -1px #4183D7;
+     box-shadow: 0 2px 1px -1px #4183D7;
+}
+
+select.form-control:focus {
+  background-color: #c6d9f3;
+  color: #6C7A89;
+}
+
+.form-container {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  justify-content: space-between;
+}
+
+.form-main {
+  background-color: rgba(255,255,255,0.5);
+  padding: 1em;
+  border-radius: 4px;
+  min-width: 280px;
+}
+
+.form-left {
+  flex: 2 1 auto;
+}
+
+.form-right {
+  flex: 1 1 auto;
+}
+
+.form-input-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.form-input-label {
+  flex: 1 1 auto;
+}
+
+.form-input-field {
+  flex: 2 2 auto;
+}
+
+.edit-in-place {
+  margin-left: 1em;
+}
+
+.form-box {
+  margin-bottom: 2em;
+  padding: 0.5em;
+  color: inherit;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 1px;
+}
+
+.form-box button {
+  margin: 4px;
+}
+
+.static-txt {
+  margin-left: 1em;
+}
+
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+label:focus,
+.btn:active,
+.btn.active {
+  outline:0px !important;
+}
+
+.scroll-to-bottom {
+  margin-top: 20vh;
+  margin-bottom: 56vh;
+}
+
+/*Site*/
+.site {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("../assets/background_image_with_overlay.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+.site-main {
+  box-sizing: border-box;
+  margin-top: 72px;
+}
+
+.site-main::after {
+  content: '\00a0';
+  display: block;
+  margin-top: 10vh;
+  height: 0px;
+  visibility: hidden;
+}
+
+.site-footer {
+  box-sizing: border-box;
+}
+
+.main-flex-container{
+  display: flex;
+}
+
+.main-sidebar {
+  height: 1em;
+  flex: 2 2 auto;
+}
+
+.main {
+  flex: 1 2 auto;
+  /*background-color: rgba(255,255,255,0.3);
+  padding: 1em;
+  border-radius: 4px;*/
+  /*justify-content: center;*/
+}
+
+
+
+/*Navbar*/
+.navbar-brand {
+  font-weight: bold !important;
+  font-size: 1.4em !important;
+}
+
+.nav-item {
+  font-weight: bold;
+  font-size: 1.3em
+}
+
+.nav-flex-display {
+  display: flex;
+}
+
+.nav-flex-sidebar {
+  height: 1em;
+  flex: 2 2 auto;
+}
+
+.nav-flex-main {
+  flex: 1 2 auto;
+  justify-content: center;
+}
+
+/*Landing Page*/
+.landing-page {
+  background-color: #2e5c98;
+  color: #fefefe;
+}
+
+/*Jumbotron*/
+.jumbotron {
+  margin-top: 10vh;
+  /*background-color: rgba(0,0,0,0.1);*/
+  background-color: inherit;
+}
+
+.jumbotron button,
+.jumbotron a.btn-lg {
+  font-size: 2em;
+  font-weight: 600;
+  margin-left: 0px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.4);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.6);
+}
+
+.jumbotron h1,
+.jumbotron p {
+  color: #fefefe;
+}
+
+.space {
+  content: '\00a0';
+}
+
+
+/*Loading component*/
+.loading {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
