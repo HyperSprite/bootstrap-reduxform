@@ -1,7 +1,7 @@
 // @flow
 
 import axios from 'axios';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 
 const ROOT_URL = process.env.ROOT_URL || '';
 

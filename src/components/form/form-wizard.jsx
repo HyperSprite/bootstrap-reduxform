@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { formValueSelector, reduxForm } from 'redux-form';
+// import { formValueSelector, reduxForm } from 'redux-form';
 // eslint-disable-next-line
-import * as actions from '../../actions';
+// import * as actions from '../../actions';
 
-import formValues from './form-values';
+// import formValues from '../search/form-values';
 import Alert from '../form/alert';
 import validate from '../form/validate';
 
@@ -18,13 +18,14 @@ const relURL = '/apiv1/search';
 
 const thisForm = 'searchform';
 
-const selector = formValueSelector(thisForm);
+// const selector = formValueSelector(thisForm);
 
 const propTypes = {
   eventSelector: PropTypes.object.isRequired,
   errorMessage: PropTypes.object,
   fetchData: PropTypes.func.isRequired,
   form: PropTypes.string.isRequired,
+  formValues: PropTypes.array.isRequired,
   handleSubmit: PropTypes.func,
   pageTransitionFalse: PropTypes.func.isRequired,
   postForm: PropTypes.func.isRequired,
@@ -37,9 +38,9 @@ const defaultProps = {
   form: thisForm,
 };
 
-let SearchWizard = class SearchWizard extends Component {
-  constructor() {
-    super();
+export default class FormWizard extends Component {
+  constructor(props) {
+    super(props);
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -83,12 +84,7 @@ let SearchWizard = class SearchWizard extends Component {
   }
 
   render() {
-    const {
-      eventSelector,
-      handleSubmit,
-      transitionPage,
-    } = this.props;
-
+    const { eventSelector, formValues, handleSubmit, transitionPage } = this.props;
     const {
       page,
     } = this.state;
@@ -139,23 +135,24 @@ let SearchWizard = class SearchWizard extends Component {
       </div>
     );
   }
-};
-
-function mapStateToProps(state) {
-  return {
-    message: state.auth.message,
-    transitionPage: state.page.transitionPage,
-    // to add/change items, use the formValues.js file
-    eventSelector: selector(state, ...formValues.map(fV => fV.contentName)),
-  };
 }
 
-SearchWizard = reduxForm({
-  enableReinitialize: true,
-  validate,
-})(SearchWizard);
+// function mapStateToProps(state, ownProps) {
+//   console.log('ownProps', ownProps);
+//   return {
+//     message: state.auth.message,
+//     transitionPage: state.page.transitionPage,
+//     // to add/change items, use the formValues.js file
+//     eventSelector: selector(state, ...formValues.map(fV => fV.contentName)),
+//   };
+// }
+//
+// FormWizard = reduxForm({
+//   enableReinitialize: true,
+//   validate,
+// })(FormWizard);
 
-SearchWizard.propTypes = propTypes;
-SearchWizard.defaultProps = defaultProps;
+FormWizard.propTypes = propTypes;
+FormWizard.defaultProps = defaultProps;
 
-export default connect(mapStateToProps, actions)(SearchWizard);
+// export default connect(mapStateToProps, actions)(FormWizard);

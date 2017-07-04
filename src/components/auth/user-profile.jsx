@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { formValueSelector, reduxForm, reset } from 'redux-form';
 import * as actions from '../../actions';
 
@@ -9,19 +9,28 @@ import formValues from './form-values';
 import Alert from '../form/alert';
 import validate from '../form/validate';
 
-import UserViewStatic from './user-view/static';
-import UserViewPhone from './user-view/static-phonenumbers';
-import UserViewAddress from './user-view/static-addresses';
-
-import UserEditInput from './user-edit/input';
-import UserEditArray from './user-edit/input-array';
+import ViewStatic from '../form/view/switch';
+import EditSwitch from '../form/edit/switch';
 
 const relURL = '/auth/edituser';
 
 const selector = formValueSelector('userdata');
 
 const propTypes = {
-  initialValues: PropTypes.object,
+  eventSelector: PropTypes.object.isRequired,
+  errorMessage: PropTypes.object,
+  fetchData: PropTypes.func.isRequired,
+  fetchMessage: PropTypes.func.isRequired,
+  form: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  pageTransitionFalse: PropTypes.func.isRequired,
+  postForm: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  errorMessage: undefined,
+  form: 'userdata',
+  transitionPage: false,
 };
 
 let UserEdit = class UserEdit extends Component {
@@ -54,16 +63,14 @@ let UserEdit = class UserEdit extends Component {
 
 
   setPage(pageNumber) {
-    console.log('setPage')
+    console.log('setPage', pageNumber);
     this.setState({ page: pageNumber });
   }
 
   renderAlert() {
     const { errorMessage } = this.props;
     return (errorMessage) ? (
-      Object.keys(errorMessage).map(key => errorMessage[key]).map((eM) => {
-        return Alert(eM.path, 'Opps', eM.message);
-      })
+      Object.keys(errorMessage).map(key => errorMessage[key]).map((eM) => Alert(eM.path, 'Opps', eM.message))
     ) : (
       null
     );
@@ -71,7 +78,7 @@ let UserEdit = class UserEdit extends Component {
 
   render() {
     const {
-      authenticated,
+      // authenticated,
       eventSelector,
       handleSubmit,
     } = this.props;
@@ -80,30 +87,41 @@ let UserEdit = class UserEdit extends Component {
       page,
     } = this.state;
 
-    if (!authenticated) {
-      return (
-        <Redirect to="/signin" />
-      );
-    }
+    // if (!authenticated) {
+    //   return (
+    //     <Redirect to="/signin" />
+    //   );
+    // }
 
     return (
-
-      <div>
-        { page !== 1 && <UserViewStatic content={eventSelector.firstname} formValues={formValues.firstname} setPage={this.setPage} thisPage={1} />}
-        { page === 1 && <UserEditInput content={eventSelector.firstname} formValues={formValues.firstname} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { page !==  2 && <UserViewStatic content={eventSelector.lastname} formValues={formValues.lastname} setPage={this.setPage} thisPage={2} />}
-        { page === 2 && <UserEditInput content={eventSelector.lastname} formValues={formValues.lastname} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { page !==  3 && <UserViewStatic content={eventSelector.profile} formValues={formValues.profile} setPage={this.setPage} thisPage={3} />}
-        { page === 3 && <UserEditInput content={eventSelector.profile} formValues={formValues.profile} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { page !==  4 && <UserViewStatic content={eventSelector.locationPref} formValues={formValues.locationPref} setPage={this.setPage} thisPage={4} />}
-        { page === 4 && <UserEditInput content={eventSelector.locationPref} formValues={formValues.locationPref} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { page !==  5 && <UserViewPhone content={eventSelector.phoneNumbers} formValues={formValues.phoneNumbers} setPage={this.setPage} thisPage={5} />}
-        { page === 5 && <UserEditArray content={eventSelector.phoneNumbers} formValues={formValues.phoneNumbers} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { page !==  6 && <UserViewAddress content={eventSelector.addresses} formValues={formValues.addresses} setPage={this.setPage} thisPage={6} />}
-        { page === 6 && <UserEditArray content={eventSelector.addresses} formValues={formValues.addresses} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { page !==  7 && <UserViewStatic content={eventSelector.userName} formValues={formValues.userName} setPage={this.setPage} thisPage={7} />}
-        { page === 7 && <UserEditInput content={eventSelector.userName} formValues={formValues.userName} auxButton={this.cancelFormEdit} auxButtonLabel="Cancel" onSubmit={handleSubmit(this.handleFormSubmit)} submitLabel='Save' />}
-        { this.renderAlert() }
+      <div className="" >
+        <div className="col-md-3 col-sm-1" />
+        <div className="form-main col-md-5 col-sm-10">
+          {formValues.map((fV, i) => (
+            (i + 1 === page) ? (
+              <EditSwitch
+                form={this.props.form}
+                key={`${fV.contentName}edit`}
+                formValues={fV}
+                content={eventSelector[fV.contentName]}
+                auxButton={this.cancelFormEdit}
+                auxButtonLabel="Cancel"
+                onSubmit={handleSubmit(this.handleFormSubmit)}
+                submitLabel="Save"
+              />
+            ) : (
+              <ViewStatic
+                key={`${fV.contentName}static`}
+                content={eventSelector[fV.contentName]}
+                formValues={fV}
+                setPage={this.setPage}
+                thisPage={i + 1}
+              />
+            )
+          ))}
+          { this.renderAlert() }
+        </div>
+        <div className="col-md-4 col-sm-1" />
       </div>
     );
   }
@@ -112,20 +130,20 @@ let UserEdit = class UserEdit extends Component {
 function mapStateToProps(state) {
   const initialValues = state.auth.user;
   return {
-    authenticated: state.auth.authenticated,
+    authenticated: true,
     message: state.auth.message,
     transitionPage: state.page.transitionPage,
     initialValues,
-    eventSelector: selector(state, 'firstname', 'lastname', 'profile', 'locationPref', 'phoneNumbers', 'addresses', 'userName'),
+    eventSelector: selector(state, ...formValues.map(fV => fV.contentName)),
   };
 }
 
 UserEdit = reduxForm({
-  form: 'userdata',
   enableReinitialize: true,
   validate,
 })(UserEdit);
 
 UserEdit.propTypes = propTypes;
+UserEdit.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, actions)(UserEdit);

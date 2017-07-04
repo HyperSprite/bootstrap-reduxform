@@ -23,7 +23,7 @@ class Home extends Component {
         <div className="main">
           <Jumbotron className="jumbo-home">
             <h1>Redux Forms</h1>
-            <p>This is an example of using Redux Form for both multi step forms (search) and form validation (Sigh In and Sign Up)</p>
+            <p>This is an example of using Redux Form for both multi step forms (search) and form validation (Sign In and Sign Up)</p>
             <Row className="show-grid">
               <Col xs={6} md={5}><Link className="btn btn-lg btn-primary btn-block" to="/search">Search</Link></Col>
               <Col xsHidden md={2} className="space" />

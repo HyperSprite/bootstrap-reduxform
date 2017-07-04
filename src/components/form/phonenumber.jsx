@@ -24,7 +24,7 @@ const enumPhones = [
   'Other',
 ];
 
-const renderPhoneNumbers = ({ fields, shouldFocus }) => (
+const renderPhoneNumbers = ({ fields, shouldFocus, contentOptions }) => (
   <ul>
     {fields.map((pN, index) =>
       <li
@@ -36,7 +36,7 @@ const renderPhoneNumbers = ({ fields, shouldFocus }) => (
             type="text"
             component={Select}
             label="Type"
-            options={enumPhones}
+            options={contentOptions}
             shouldFocus
           />
           <Field

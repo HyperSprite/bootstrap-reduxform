@@ -6,15 +6,14 @@ import * as actions from '../../../actions';
 
 import validate from '../../form/validate';
 
-const UserWizardPage = (props) => {
-  const { formValues, handleSubmit, auxButton, auxButtonLabel, pristine, shouldFocus, submitting, submitLabel } = props
+const InputPhonenumbers = (props) => {
+  const { component, formValues, handleSubmit, auxButton, auxButtonLabel, pristine, shouldFocus, submitting, submitLabel } = props
   const {
     contentName,
     contentLabel,
     contentType,
     contentAlt,
     contentOptions,
-    component,
   } = formValues;
   return (
     <Form id={contentName} onSubmit={handleSubmit}>
@@ -22,6 +21,7 @@ const UserWizardPage = (props) => {
         <FieldArray
           name={contentName}
           component={component}
+          contentOptions={contentOptions}
           shouldFocus={shouldFocus}
         />
       </FormGroup>
@@ -52,7 +52,7 @@ const UserWizardPage = (props) => {
 };
 
 export default reduxForm({
-  form: 'searchform',
+  // form: 'searchform',
   destroyOnUnmount: false,
   validate,
-})(UserWizardPage);
+})(InputPhonenumbers);

@@ -1,55 +1,51 @@
-import Addresses from '../form/addresses';
-import Input from '../form/input';
-import PhoneNumbers from '../form/phone-numbers';
-
-const formValues = {
-  firstname: {
+const formValues = [
+  {
     contentName: 'firstname',
     contentLabel: 'First Name',
     contentType: 'text',
     contentAlt: '',
     contentOptions: null,
-    component: Input,
+    componentType: 'Input',
   },
-  lastname: {
+  {
     contentName: 'lastname',
     contentLabel: 'Last Name',
     contentType: 'text',
     contentAlt: '',
     contentOptions: null,
-    component: Input,
+    componentType: 'Input',
   },
-  profile: {
-    contentName: 'profile',
-    contentLabel: 'Profile Image',
-    contentType: 'img',
-    contentAlt: '',
-    contentOptions: null,
-    component: Input,
-  },
-  locationPref: {
+  {
     contentName: 'locationPref',
     contentLabel: 'Location Detection',
     contentType: 'checkbox',
     contentOptions: ['Manual', 'Automatic'],
-    component: Input,
+    componentType: 'Input',
   },
-  phoneNumbers: {
+  {
     contentName: 'phoneNumbers',
-    component: PhoneNumbers,
+    componentType: 'PhoneNumbers',
+    contentOptions: [
+      'Direct',
+      'Main',
+      'Mobile',
+      'Work',
+      'Home',
+      'Other',
+    ],
   },
-  addresses: {
+  {
     contentName: 'addresses',
-    component: Addresses,
+    componentType: 'Addresses',
   },
-  userName: {
+  {
     contentName: 'userName',
     contentLabel: 'User Name (Public)',
     contentType: 'text',
     contentAlt: '',
     contentOptions: null,
-    component: Input,
+    componentType: 'Input',
   },
-};
+];
 
 export default formValues;

@@ -1,30 +1,27 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Button, ButtonGroup, Form, FormGroup } from 'react-bootstrap';
-
+// eslint-disable-next-line
 import * as actions from '../../../actions';
 
 import validate from '../../form/validate';
 
 const WizardInput = (props) => {
   const { content, formValues, handleSubmit, auxButton, auxButtonLabel, pristine, submitting, submitLabel } = props;
-  const {
-    contentName,
-    contentLabel,
-    contentType,
-    component,
-  } = formValues;
-
+  console.log('formValues', formValues, content);
   return (
     <div className="form-container">
-      <Form id={contentName} onSubmit={handleSubmit}>
+      <Form id={formValues.contentName} onSubmit={handleSubmit}>
         <FormGroup className="inline-next form-left">
           <Field
-            component={component}
-            label={contentLabel}
-            name={contentName}
-            type={contentType}
-            checked={content}
+            // {...props}
+            content={content}
+            formValues={formValues}
+            component={props.component}
+            label={formValues.contentLabel}
+            name={formValues.contentName}
+            type={formValues.contentType}
+            checked={formValues.content}
             shouldFocus
           />
         </FormGroup>
@@ -56,7 +53,7 @@ const WizardInput = (props) => {
 };
 
 export default reduxForm({
-  form: 'searchform',
+  // form: 'formdata',
   destroyOnUnmount: false,
   validate,
 })(WizardInput);

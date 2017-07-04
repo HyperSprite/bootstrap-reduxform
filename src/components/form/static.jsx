@@ -58,12 +58,14 @@ const renderStatic = ({ baseURL, contentLabel, content, contentType, contentAlt,
       <div
         className="static"
       >
-        <label
-          htmlFor={content}
-          className="static-label"
-        >
-          {contentLabel}
-        </label>
+        <div>
+          <label
+            htmlFor={content}
+            className="static-label"
+          >
+            {contentLabel}
+          </label>
+        </div>
         <div
           className="static-txt"
         >

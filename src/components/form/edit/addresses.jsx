@@ -1,14 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FieldArray, reduxForm } from 'redux-form';
 import { Button, Form, FormGroup } from 'react-bootstrap';
-
+// eslint-disable-next-line
 import * as actions from '../../../actions';
 
 import Addresses from '../../form/addresses';
 import validate from '../../form/validate';
 
-const UserWizardPage = (props) => {
-  const { handleSubmit, auxButton, auxButtonLabel, submitLabel } = props
+const propTypes = {
+  contentName: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func,
+  auxButton: PropTypes.bool,
+  auxButtonLabel: PropTypes.string,
+  submitLabel: PropTypes.string,
+};
+
+const defaultProps = {
+  auxButtonLabel: null,
+};
+
+const FormEditAddresses = (props) => {
+  const { contentName, handleSubmit, auxButton, auxButtonLabel, submitLabel } = props
   return (
     <Form id={contentName} inline onSubmit={handleSubmit}>
       {(auxButtonLabel) ? (
@@ -37,8 +50,10 @@ const UserWizardPage = (props) => {
   );
 };
 
+FormEditAddresses.propTypes = propTypes;
+FormEditAddresses.defaultProps = defaultProps;
+
 export default reduxForm({
-  form: 'userdata',
   destroyOnUnmount: false,
   validate,
-})(UserWizardPage);
+})(FormEditAddresses);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { Button, ButtonGroup, Form, FormGroup } from 'react-bootstrap';
-
+// eslint-disable-next-line 
 import * as actions from '../../../actions';
 
 import validate from '../../form/validate';

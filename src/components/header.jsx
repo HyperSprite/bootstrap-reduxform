@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap'
-
+// eslint-disable-next-line
 import * as actions from '../actions';
 
 import Signin from './auth/signin';
@@ -102,8 +102,11 @@ class Header extends Component {
                     <Link to="/search" >Search</Link>
                   </li>
                   {this.renderLinks()}
-                  <li className="nav-item" key={'About'} >
-                    <Link to="/about">About</Link>
+                  <li className="nav-item" key={'User'} >
+                    <Link to="/user-profile">User</Link>
+                  </li>
+                  <li className="nav-item" key={'UserWiz'} >
+                    <Link to="/user-wizard">User Wizard</Link>
                   </li>
                 </ul>
               </Navbar.Collapse>
