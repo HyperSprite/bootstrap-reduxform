@@ -1,3 +1,31 @@
+## Bootstrap-ReduxForm
+
+This project is just some experiments in form setup and styling using Bootstrap, ReduxForm and Sass.
+I consider it my "Todo" app for testing new styling things because a form can have so many different elements.
+
+
+### ReduxForm
+I am working on two different styles. One is an edit in place (as if a user already has
+a profile and wants to make a change), the other is a wizard (for creating a new user or walking
+through a multi-part search).
+Both types use the same array of objects called "formValues" for generating each field. Currently these
+are local files but it could also be moved to a database just as easily for something more dynamic.
+
+### Bootstrap and Sass
+Sass has already been integrated with npm to run with the default "npm run" and "npm build" commands based on the docs.
+
+Styling in React is more **Wild West** than any other part of the react ecosystem, as far as I can tell. There is styling
+in monolithic CSS, module level CSS, JS DOM Styles, and more. The project this was forked from was monolithic.
+Currently, I am moving this to a module level CSS style. but also want to explore other ways of styling this.
+Not all of the elements have been properly styled yet.
+
+### Boilerplate
+I wanted to see how easy it would be to move an existing project from a hand built dev environment to create-react-app.
+It turns out for a basic app, you just drop it in and install the packages, then start fixing the warnings brought on by
+React 15.5.
+
+#### create-react-app boiler plate README below
+---
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
