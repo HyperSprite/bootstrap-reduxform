@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/main.css';
 
 import Header from './header';
 import AppModal from './form/modal';
-
-import '../styles/main.css';
 
 export default class App extends Component {
   render() {
