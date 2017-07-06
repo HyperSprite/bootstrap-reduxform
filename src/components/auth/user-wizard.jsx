@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { formValueSelector, reduxForm } from 'redux-form';
+import { animateScroll } from 'react-scroll';
 // eslint-disable-next-line
 import * as actions from '../../actions';
 
@@ -67,6 +68,7 @@ let UserWizard = class UserWizard extends Component {
 
   nextPage() {
     this.setState({ page: this.state.page + 1 });
+    animateScroll.scrollToBottom();
   }
 
   previousPage() {

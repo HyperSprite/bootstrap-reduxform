@@ -6,6 +6,10 @@
 @import 'styles/themes/_bootstrap-colors.scss';
 @import 'styles/components/_form';
 
+html {
+  background-color: $color-b4;
+  // color: $color-g2;
+}
 
 .scroll-to-bottom {
   margin-top: 20vh;
@@ -14,15 +18,15 @@
 
 /*Site*/
 .site {
-  height: 100vh;
+  // height: 100vh;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-image: url('../assets/background_image_with_overlay.jpg');
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom center;
+  background-position: top center;
 }
 
 .site-main {

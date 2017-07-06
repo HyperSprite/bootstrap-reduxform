@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { formValueSelector, reduxForm } from 'redux-form';
+import { animateScroll } from 'react-scroll';
 // eslint-disable-next-line
 import * as actions from '../../actions';
 
@@ -67,11 +68,13 @@ let SearchWizard = class SearchWizard extends Component {
 
   nextPage() {
     this.setState({ page: this.state.page + 1 });
+    animateScroll.scrollToBottom();
   }
 
   previousPage() {
     this.setState({ page: this.state.page - 1 });
   }
+
 
   renderAlert() {
     const { errorMessage } = this.props;
@@ -100,7 +103,7 @@ let SearchWizard = class SearchWizard extends Component {
     }
 
     return (
-      <div className="" >
+      <div >
         <div className="col-md-3 col-sm-1" />
         <div className="form-main col-md-5 col-sm-10">
           <h1>Search</h1>
@@ -127,7 +130,7 @@ let SearchWizard = class SearchWizard extends Component {
           ))}
           { page === formValues.length + 1 &&
             <EditPageLast
-              key={'lastPage'}
+              key="lastPage"
               formValues={{ contentName: 'lastpage' }}
               auxButton={this.previousPage}
               auxButtonLabel="Back"
