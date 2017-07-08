@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom'
 import { formValueSelector, reduxForm, reset } from 'redux-form';
+
+// eslint-disable-next-line
 import * as actions from '../../actions';
 
 import formValues from './form-values';
 import Alert from '../form/alert';
 import validate from '../form/validate';
 
-import ViewStatic from '../form/view/switch';
+import ViewSwitch from '../form/view/switch';
 import EditSwitch from '../form/edit/switch';
 
-const relURL = '/auth/edituser';
 
-const selector = formValueSelector('userdata');
+const relURL = '/auth/edituser';
+const thisForm = 'userdata';
+const selector = formValueSelector(thisForm);
 
 const propTypes = {
   eventSelector: PropTypes.object.isRequired,
@@ -29,8 +32,8 @@ const propTypes = {
 
 const defaultProps = {
   errorMessage: undefined,
-  form: 'userdata',
   transitionPage: false,
+  form: thisForm,
 };
 
 let UserEdit = class UserEdit extends Component {
@@ -110,7 +113,7 @@ let UserEdit = class UserEdit extends Component {
                 submitLabel="Save"
               />
             ) : (
-              <ViewStatic
+              <ViewSwitch
                 key={`${fV.contentName}static`}
                 content={eventSelector[fV.contentName]}
                 formValues={fV}

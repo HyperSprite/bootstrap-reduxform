@@ -11,14 +11,12 @@ import formValues from './form-values';
 import Alert from '../form/alert';
 import validate from '../form/validate';
 
-import ViewStatic from '../form/view/static';
+import ViewSwitch from '../form/view/switch';
 import EditSwitch from '../form/edit/switch';
 import EditPageLast from '../form/edit/page-last';
 
 const relURL = '/auth/edituser';
-
 const thisForm = 'userdata';
-
 const selector = formValueSelector(thisForm);
 
 const propTypes = {
@@ -108,11 +106,18 @@ let UserWizard = class UserWizard extends Component {
           <h1>User Profile Wizard</h1>
           {formValues.map((fV, i) => (
              page > i + 1 &&
-             <ViewStatic
-               key={fV.contentName}
-               content={eventSelector[fV.contentName]}
-               formValues={fV}
-             />
+            //  <ViewSwitch
+            //    key={fV.contentName}
+            //    content={eventSelector[fV.contentName]}
+            //    formValues={fV}
+            //  />
+            <ViewSwitch
+              key={`${fV.contentName}static`}
+              content={eventSelector[fV.contentName]}
+              formValues={fV}
+              setPage={this.setPage}
+              thisPage={i + 1}
+            />
           ))}
           {formValues.map((fV, i) => (
             page === i + 1 &&

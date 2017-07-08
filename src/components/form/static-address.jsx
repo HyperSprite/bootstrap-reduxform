@@ -13,7 +13,7 @@ const propTypes = {
   locZip: PropTypes.string,
 };
 
-const renderStatic = ({ locType, locStreet, locStreet2, locCity, locState, locCountry, locZip }) => {
+const renderAddressStatic = ({ locType, locStreet, locStreet2, locCity, locState, locCountry, locZip }) => {
   let addr = '';
   if (locStreet) addr = `${locStreet}, `;
   if (locStreet2) addr += `${locStreet2}, `;
@@ -38,6 +38,6 @@ const renderStatic = ({ locType, locStreet, locStreet2, locCity, locState, locCo
   return null;
 };
 
-renderStatic.propTypes = propTypes;
+renderAddressStatic.propTypes = propTypes;
 
-export default renderStatic;
+export default renderAddressStatic;

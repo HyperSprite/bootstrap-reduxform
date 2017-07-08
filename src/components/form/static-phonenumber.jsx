@@ -6,7 +6,7 @@ const propTypes = {
   phoneType: PropTypes.string,
 };
 
-const renderStatic = ({ phoneNumber, phoneType  }) => {
+const renderPhonenumberStatic = ({ phoneNumber, phoneType  }) => {
   if (phoneType && phoneNumber) {
     return (
       <div className="static-list" >
@@ -17,6 +17,6 @@ const renderStatic = ({ phoneNumber, phoneType  }) => {
   return null;
 };
 
-renderStatic.propTypes = propTypes;
+renderPhonenumberStatic.propTypes = propTypes;
 
-export default renderStatic;
+export default renderPhonenumberStatic;
