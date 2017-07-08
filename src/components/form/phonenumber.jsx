@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-import { Button } from 'react-bootstrap';
+import { Button, Form, FormGroup, Glyphicon } from 'react-bootstrap';
 
 import Input from './input';
+import Label from './label';
 import Select from './select';
 
 const propTypes = {
@@ -15,59 +16,62 @@ const defaultProps = {
   shouldFocus: false,
 };
 
-const enumPhones = [
-  'Direct',
-  'Main',
-  'Mobile',
-  'Work',
-  'Home',
-  'Other',
-];
-
 const renderPhoneNumbers = ({ fields, shouldFocus, contentOptions }) => (
-  <ul>
-    {fields.map((pN, index) =>
-      <li
+  <div>
+    <Label text="Phone Numbers" />
+    {fields.map((pN, index) => {
+      const addedComps = (
+        <span>
+          <FormGroup>
+            <Field
+              name={`${pN}.phoneType`}
+              type="text"
+              component={Select}
+              // label="Type"
+              options={contentOptions}
+
+            />
+          </FormGroup>
+          <Button
+            type="button"
+            bsStyle="danger"
+            onClick={() => fields.remove(index)}
+          >
+            <Glyphicon glyph="glyphicon glyphicon-trash" />
+          </Button>
+        </span>
+      );
+
+      return (<Form
         key={`${pN}.phoneNumber`}
+        inline
       >
-        <div className="form-box">
-          <Field
-            name={`${pN}.phoneType`}
-            type="text"
-            component={Select}
-            label="Type"
-            options={contentOptions}
-            shouldFocus
-          />
+
+        <FormGroup controlId="formInlinePhoneNumber" >
           <Field
             name={`${pN}.phoneNumber`}
             type="text"
             component={Input}
-            label="Phone Number"
+            // label="Phone Number"
+            addedComps={addedComps}
+            shouldFocus
           />
-          <div>
-            <Button
-              type="button"
-              bsStyle="danger"
-              onClick={() => fields.remove(index)}
-            >
-            delete
-            </Button>
-          </div>
+        </FormGroup>
 
-        </div>
-      </li>,
-    )}
-    <li>
+
+      </Form>)
+    })}
+    <div>
       <Button
         type="button"
+        bsStyle="info"
         onClick={() => fields.push()}
         autoFocus={shouldFocus}
       >
-        Add Phone Number
+        Add Another Phone Number
       </Button>
-    </li>
-  </ul>
+    </div>
+  </div>
 );
 
 renderPhoneNumbers.propTypes = propTypes;

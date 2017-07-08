@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   input: PropTypes.object.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
   shouldFocus: PropTypes.bool,
   type: PropTypes.string.isRequired,
@@ -14,9 +14,11 @@ const defaultProps = {
   placeholder: '',
   shouldFocus: false,
   meta: null,
+  label: '',
 };
 
 const renderInput = ({
+  addedComps,
   input,
   label,
   placeholder,
@@ -29,13 +31,12 @@ const renderInput = ({
   },
 }) => (
   <div>
-    <label
-      htmlFor={input}
-    >
+    <label className="edit-label" htmlFor={input} >
       {label}
     </label>
     <div>
-      <input className="form-control" {...input} placeholder={placeholder} type={type} autoFocus={shouldFocus} />
+      <input className="form-control edit-txt" {...input} placeholder={placeholder} type={type} autoFocus={shouldFocus} />
+      {addedComps}
       {touched && (
         (error && <div className="form-error">{error}</div>) || (warning && <div className="form-warning">{warning}</div>)
       )}

@@ -9,9 +9,33 @@ import validate from '../../form/validate';
 const WizardInput = (props) => {
   const { content, formValues, handleSubmit, auxButton, auxButtonLabel, pristine, submitting, submitLabel } = props;
   console.log('formValues', formValues, content);
+
+  const buttonSet = (
+    <ButtonGroup className="edit-in-place form-right">
+      <Button
+        type="submit"
+        bsStyle="primary"
+        className="next"
+        disabled={pristine || submitting}
+      >
+        {submitLabel}
+      </Button>
+      {(auxButtonLabel) ? (
+        <Button
+          type="button"
+          bsStyle="info"
+          className="previous"
+          onClick={auxButton}
+        >
+          {auxButtonLabel}
+        </Button>
+        ) : null}
+    </ButtonGroup>
+  );
+
   return (
     <div className="form-container">
-      <Form id={formValues.contentName} onSubmit={handleSubmit}>
+      <Form inline id={formValues.contentName} onSubmit={handleSubmit}>
         <FormGroup className="inline-next form-left">
           <Field
             // {...props}
@@ -23,30 +47,9 @@ const WizardInput = (props) => {
             type={formValues.contentType}
             checked={formValues.content}
             shouldFocus
+            addedComps={buttonSet}
           />
         </FormGroup>
-        <ButtonGroup className="edit-in-place form-right">
-          <Button
-            type="submit"
-            bsStyle="primary"
-            bsSize="large"
-            className="next"
-            disabled={pristine || submitting}
-          >
-            {submitLabel}
-          </Button>
-          {(auxButtonLabel) ? (
-            <Button
-              type="button"
-              bsStyle="info"
-              bsSize="large"
-              className="previous"
-              onClick={auxButton}
-            >
-              {auxButtonLabel}
-            </Button>
-            ) : null}
-        </ButtonGroup>
       </Form>
     </div>
   );

@@ -1,13 +1,13 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { Button, ButtonGroup, Form, FormGroup } from 'react-bootstrap';
-// eslint-disable-next-line 
+// eslint-disable-next-line
 import * as actions from '../../../actions';
 
 import validate from '../../form/validate';
 
 const UserWizardPageLast = (props) => {
-  const { contentName, handleSubmit, pristine, submitting, auxButton, auxButtonLabel } = props
+  const { contentName, handleSubmit, pristine, submitting, auxButton, auxButtonLabel, reset } = props
   return (
     <Form id={contentName} onSubmit={handleSubmit}>
       <FormGroup className="inline-next form-left">
@@ -16,7 +16,6 @@ const UserWizardPageLast = (props) => {
           <Button
             type="submit"
             bsStyle="primary"
-            bsSize="large"
             className="next"
             disabled={pristine || submitting}
             // autoFocus
@@ -27,7 +26,6 @@ const UserWizardPageLast = (props) => {
             <Button
               type="button"
               bsStyle="info"
-              bsSize="large"
               className="previous"
               onClick={auxButton}
             >
@@ -36,8 +34,8 @@ const UserWizardPageLast = (props) => {
           ) : null}
           <Button
             bsStyle="info"
-            bsSize="large"
             className="previous"
+            onClick={reset}
           >
             Cancel
           </Button>

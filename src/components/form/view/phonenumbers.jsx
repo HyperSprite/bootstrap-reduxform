@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel } from 'react-bootstrap';
 
+import Label from '../label';
 import StaticPhoneNumber from '../static-phonenumber';
 
 const propTypes = {
@@ -18,20 +18,19 @@ const staticPhoneNumbers = ({ content = [], setPage, thisPage, formValues }) => 
 
   return (
     <div  onClick={setPageFunc} >
-      <ControlLabel className="inline-this">Phone Numbers</ControlLabel>
-      <ul>
+      <Label text="Phone Numbers" />
+
         {content.map((pN) => {
           return (
-            <li key={pN.phoneNumber} >
+            <div key={pN.phoneNumber} >
               <StaticPhoneNumber
                 options={formValues.contentOptions}
                 phoneType={pN.phoneType}
                 phoneNumber={pN.phoneNumber}
               />
-            </li>
+            </div>
           );
         })}
-      </ul>
     </div>
   );
 };

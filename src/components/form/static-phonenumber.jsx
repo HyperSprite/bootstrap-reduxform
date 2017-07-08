@@ -9,16 +9,8 @@ const propTypes = {
 const renderStatic = ({ phoneNumber, phoneType  }) => {
   if (phoneType && phoneNumber) {
     return (
-      <div
-        className="static"
-      >
-        <label
-          htmlFor={phoneNumber}
-          className="static-label"
-        >
-          {phoneType}
-        </label>{' '}
-        {phoneNumber}
+      <div className="static-list" >
+        <span className="static-label inline">{phoneType}</span><span className="static-txt">{phoneNumber}</span>
       </div>
     );
   }

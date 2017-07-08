@@ -55,20 +55,13 @@ const renderContent = (content, contentType, contentAlt, baseURL, contentOptions
 const renderStatic = ({ baseURL, contentLabel, content, contentType, contentAlt, contentOptions }) => {
   if (content || contentType === 'checkbox') {
     return (
-      <div
-        className="static"
-      >
+      <div className="static" >
         <div>
-          <label
-            htmlFor={content}
-            className="static-label"
-          >
+          <label className="static-label" htmlFor={content} >
             {contentLabel}
           </label>
         </div>
-        <div
-          className="static-txt"
-        >
+        <div className="static-txt" >
           {renderContent(content, contentType, contentAlt, baseURL, contentOptions)}
         </div>
       </div>

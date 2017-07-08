@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   input: PropTypes.object.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   options: PropTypes.array.isRequired,
   shouldFocus: PropTypes.bool,
   type: PropTypes.string.isRequired,
@@ -11,13 +11,19 @@ const propTypes = {
   meta: PropTypes.object,
 };
 
-const renderInput = ({ input, label, options, placeholder, shouldFocus, type, meta: { touched, error, warning } }) => (
+const defaultProps = {
+  label: '',
+}
+
+const renderSelect = ({ input, label, options, placeholder, shouldFocus, type, meta: { touched, error, warning } }) => (
   <div>
-    <label
-      htmlFor={input}
-    >
-      {label}
-    </label>
+    {!!label ? (
+      <label
+        htmlFor={input}
+      >
+        {label}
+      </label>
+    ) : null}
     <div>
       <select
         className="form-control"
@@ -36,6 +42,7 @@ const renderInput = ({ input, label, options, placeholder, shouldFocus, type, me
   </div>
 );
 
-renderInput.propTypes = propTypes;
+renderSelect.propTypes = propTypes;
+renderSelect.defaultProps = defaultProps;
 
-export default renderInput;
+export default renderSelect;
