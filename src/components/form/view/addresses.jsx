@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel } from 'react-bootstrap';
 
-import StaticAddress from '../../form/static-address';
+import Lable from '../label';
+import StaticAddress from '../static-address';
 
 const propTypes = {
   content: PropTypes.array,
@@ -10,30 +10,25 @@ const propTypes = {
   thisPage: PropTypes.number,
 };
 
-const staticAddresses = ({ content = [], setPage, thisPage }) => {
+const staticAddresses = ({ content = [], setPage, thisPage, formValues }) => {
 
   const setPageFunc = thisPage ?
     () => setPage(thisPage) :
     null;
 
+  const addressLabel = content.length === 1 ? 'Address' : 'Addresses';
+
   return (
     <div onClick={setPageFunc} >
-      <ControlLabel className="inline-this">Addresses</ControlLabel>
-      <ul>
+      <Lable text={addressLabel} />
         {content.map(ad => (
-          <li key={ad.locStreet} >
+          <div key={ad.locStreet} >
             <StaticAddress
-              locType={ad.locType}
-              locStreet={ad.locStreet}
-              locStreet2={ad.locStreet2}
-              locCity={ad.locCity}
-              locState={ad.locState}
-              locCountry={ad.locCountry}
-              locZip={ad.locZip}
+              {...ad}
+              options={formValues.contentOptions}
             />
-          </li>
+          </div>
         ))}
-      </ul>
     </div>
   );
 };

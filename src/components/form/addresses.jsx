@@ -15,25 +15,20 @@ const defaultProps = {
   shouldFocus: false,
 };
 
-const enumAddress = [
-  'Home',
-  'Office',
-  'Other',
-];
-
-const renderAddresses = ({ fields, shouldFocus }) => (
-  <ul>
+const renderAddresses = ({ fields, shouldFocus, contentOptions }) => (
+  <div>
     {fields.map((aD, index) =>
-      <li
-        key={aD.locStreet}
+      <div
+        key={`${aD.locStreet}`}
       >
         <div className="form-box">
           <Field
+            inline
             name={`${aD}.locType`}
             type="text"
             component={Select}
             label="Type"
-            options={enumAddress}
+            options={contentOptions.type}
             shouldFocus
           />
           <Field
@@ -80,9 +75,9 @@ const renderAddresses = ({ fields, shouldFocus }) => (
           delete
           </Button>
         </div>
-      </li>,
+      </div>,
     )}
-    <li>
+
       <Button
         type="button"
         onClick={() => fields.push()}
@@ -90,8 +85,8 @@ const renderAddresses = ({ fields, shouldFocus }) => (
       >
         Add Address
       </Button>
-    </li>
-  </ul>
+
+  </div>
 );
 
 renderAddresses.propTypes = propTypes;

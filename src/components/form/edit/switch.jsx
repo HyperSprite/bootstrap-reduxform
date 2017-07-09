@@ -5,9 +5,8 @@ import Addresses from '../addresses';
 import Input from '../input';
 import PhoneNumber from '../phonenumber';
 
-import EditAddresses from './addresses';
 import EditInput from './input';
-import EditPhoneNumbers from './phonenumbers';
+import EditArray from './array';
 // import EditPhoneNumbers from './input-phoneNumbers';
 
 const propTypes = {
@@ -19,10 +18,9 @@ const EditSwitch = (props) => {
     case 'Input':
       return <EditInput {...props} component={Input} />;
     case 'PhoneNumbers':
-    console.log('props', props)
-      return <EditPhoneNumbers {...props} options={props.formValues.contentOptions} component={PhoneNumber} />;
+      return <EditArray {...props} options={props.formValues.contentOptions} component={PhoneNumber} />;
     case 'Addresses':
-      return <EditAddresses {...props} component={Addresses} />;
+      return <EditArray {...props} options={props.formValues.contentOptions} component={Addresses} />;
     default:
       return null;
   }

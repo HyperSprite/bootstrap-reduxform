@@ -27,8 +27,7 @@ const renderPhoneNumbers = ({ fields, shouldFocus, contentOptions }) => (
               name={`${pN}.phoneType`}
               type="text"
               component={Select}
-              // label="Type"
-              options={contentOptions}
+              options={contentOptions.type}
 
             />
           </FormGroup>

@@ -12,21 +12,24 @@ const propTypes = {
 
 const staticPhoneNumbers = ({ content = [], setPage, thisPage, formValues }) => {
 
+const phoneLabel = content.length === 1 ? 'Phone Number' : 'Phone Numbers';
+
   const setPageFunc = thisPage ?
     () => setPage(thisPage) :
     null;
 
   return (
     <div  onClick={setPageFunc} >
-      <Label text="Phone Numbers" />
+      <Label text={phoneLabel} />
 
         {content.map((pN) => {
           return (
             <div key={pN.phoneNumber} >
               <StaticPhoneNumber
+                {...pN}
                 options={formValues.contentOptions}
-                phoneType={pN.phoneType}
-                phoneNumber={pN.phoneNumber}
+                // phoneType={pN.phoneType}
+                // phoneNumber={pN.phoneNumber}
               />
             </div>
           );

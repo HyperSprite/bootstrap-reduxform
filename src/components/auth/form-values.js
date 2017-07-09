@@ -25,18 +25,27 @@ const formValues = [
   {
     contentName: 'phoneNumbers',
     componentType: 'PhoneNumbers',
-    contentOptions: [
-      'Direct',
-      'Main',
-      'Mobile',
-      'Work',
-      'Home',
-      'Other',
-    ],
+    contentOptions: {
+      type: [
+        'Direct',
+        'Main',
+        'Mobile',
+        'Work',
+        'Home',
+        'Other',
+      ],
+    },
   },
   {
     contentName: 'addresses',
     componentType: 'Addresses',
+    contentOptions: {
+      type: [
+        'Home',
+        'Office',
+        'Other',
+      ]
+    }
   },
   {
     contentName: 'userName',

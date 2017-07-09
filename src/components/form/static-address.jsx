@@ -14,24 +14,27 @@ const propTypes = {
 };
 
 const renderAddressStatic = ({ locType, locStreet, locStreet2, locCity, locState, locCountry, locZip }) => {
-  let addr = '';
-  if (locStreet) addr = `${locStreet}, `;
-  if (locStreet2) addr += `${locStreet2}, `;
-  if (locCity) addr += `${locCity}, `;
-  if (locState) addr += `${locState}, `;
-  if (locCountry) addr += `${locCountry} `;
-  if (locZip) addr += `${locZip} `;
+  let addrLineOne = '';
+  let addrLineTwo = '';
+  let addrLineThree = '';
+  if (locStreet) addrLineOne = `${locStreet}`;
+  if (locStreet2) addrLineOne += `, ${locStreet2}`;
 
-  if (locType && locState) {
+  if (locCity) addrLineTwo += `${locCity}, `;
+  if (locState) addrLineTwo += `${locState}, `;
+    if (locZip) addrLineTwo += `${locZip} `;
+
+  if (locCountry) addrLineThree += `${locCountry} `;
+
+  if (locType && addrLineTwo) {
     return (
-      <div
-        className="inline-next static"
-      >
-        <Static
-          content={addr}
-          type="text"
-          contentLabel={locType}
-        />
+      <div className="static-list" >
+        <div className="static-label inline">{locType}</div>
+          <div className="static-txt">
+            <div>{addrLineOne}</div>
+            <div>{addrLineTwo}</div>
+            <div>{addrLineThree}</div>
+          </div>
       </div>
     );
   }
